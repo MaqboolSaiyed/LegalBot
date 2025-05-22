@@ -1,0 +1,56 @@
+
+    Key ICAI Guidelines for Chartered Accountants:
+
+    1. Professional Ethics
+       - Independence:
+         * Maintain objectivity
+         * Avoid conflicts of interest
+         * Disclose any relationships
+         * No financial interest in client
+       - Integrity:
+         * Honest and straightforward
+         * No misleading information
+         * No false statements
+         * Maintain professional standards
+
+    2. Audit Standards
+       - Planning:
+         * Understand client's business
+         * Assess risks
+         * Plan audit procedures
+         * Document audit strategy
+       - Execution:
+         * Follow SA standards
+         * Gather sufficient evidence
+         * Document all findings
+         * Maintain working papers
+       - Reporting:
+         * Clear audit opinion
+         * Disclose all material matters
+         * Follow reporting standards
+         * Include all required statements
+
+    3. Quality Control
+       - Policies:
+         * Establish quality control system
+         * Monitor compliance
+         * Regular reviews
+         * Document procedures
+       - Training:
+         * Regular technical updates
+         * Professional development
+         * Ethics training
+         * Industry knowledge
+
+    4. Documentation
+       - Working Papers:
+         * Complete audit trail
+         * All evidence documented
+         * Clear conclusions
+         * Proper organization
+       - Retention:
+         * Keep records for 7 years
+         * Secure storage
+         * Easy retrieval
+         * Confidentiality maintained
+    

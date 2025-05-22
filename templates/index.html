@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Legal & Accounting Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(120deg, #1a365d 0%, #2a4365 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .typing-effect {
+            border-right: 2px solid #fff;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #fff }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center typing-effect">Indian Legal & Accounting Assistant</h1>
+            <p class="text-center mt-2 text-gray-300">Powered by Advanced RAG Technology</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <!-- Query Form -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8 card-hover fade-in">
+                <form id="queryForm" class="space-y-4">
+                    <div>
+                        <label for="query" class="block text-gray-700 font-medium mb-2">Your Legal Question</label>
+                        <textarea id="query" name="query" rows="3" 
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Ask a question about Indian litigation or ICAI guidelines..."></textarea>
+                    </div>
+                    <button type="submit" 
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Get Answer
+                    </button>
+                </form>
+            </div>
+
+            <!-- Response Section -->
+            <div id="response" class="bg-white rounded-lg shadow-lg p-6 card-hover fade-in hidden">
+                <h2 class="text-xl font-semibold mb-4">Response</h2>
+                <div id="responseContent" class="prose max-w-none"></div>
+            </div>
+
+            <!-- Example Questions -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-semibold mb-4">Example Questions</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow card-hover fade-in">
+                        <p class="text-gray-700">What are the steps to file a lawsuit in India?</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow card-hover fade-in">
+                        <p class="text-gray-700">What documents are required for filing a civil case?</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow card-hover fade-in">
+                        <p class="text-gray-700">What are the key ICAI guidelines for chartered accountants?</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow card-hover fade-in">
+                        <p class="text-gray-700">How long does a typical civil case take in India?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-6 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="text-sm text-gray-300">© 2024 Maqbool Saiyed. All rights reserved.</p>
+                <p class="text-xs text-gray-400 mt-2">Built with ❤️ for Indian Legal & Accounting Community</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('queryForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const query = document.getElementById('query').value;
+            const responseDiv = document.getElementById('response');
+            const responseContent = document.getElementById('responseContent');
+
+            // Show loading state
+            responseDiv.classList.remove('hidden');
+            responseContent.innerHTML = '<div class="animate-pulse">Processing your query...</div>';
+
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `query=${encodeURIComponent(query)}`
+                });
+
+                const data = await response.json();
+                responseContent.innerHTML = data.response.replace(/\n/g, '<br>');
+            } catch (error) {
+                responseContent.innerHTML = 'Sorry, an error occurred while processing your query. Please try again.';
+            }
+        });
+
+        // Add click handlers for example questions
+        document.querySelectorAll('.example-question').forEach(question => {
+            question.addEventListener('click', () => {
+                document.getElementById('query').value = question.textContent;
+            });
+        });
+    </script>
+</body>
+</html>
